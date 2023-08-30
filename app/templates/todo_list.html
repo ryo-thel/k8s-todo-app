@@ -1,0 +1,15 @@
+<h1>Todo List</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Todo</button>
+</form>
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        {{ todo.title }} - {% if todo.completed %}Completed{% else %}Not Completed{% endif %}
+        <a href="{% url 'edit_todo' todo.id %}">Edit</a>
+    </li>
+    {% endfor %}
+</ul>
